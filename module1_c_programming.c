@@ -238,6 +238,8 @@ void item2(void) {
     // ---------- NOTE (not in the exam) ----------
     // k[2] AND c ARE UNKNOWN ON THE EXAM. d has no value yet here (d = *e comes below),
     // so d + a reads garbage. c = k[2] + a depends on that, so c is unknown too.
+    // THE ADDRESS IN e IS UNKNOWN ON THE EXAM. e = g makes e point at c, but the
+    // address of c is not given in the question (it also changes on every run).
     // ----------------------------------------------
     k[2] = d + a;
     d = *e;
