@@ -3,16 +3,58 @@
 Runnable master files for IS1500 Computer Organization and Components, one per module.
 Each file collects that module's exam questions as code you can compile and run.
 
-| Module | Topic | File | Status |
-|---|---|---|---|
-| 1 | C and Assembly Programming, C part | `module1_c_programming.c` | in progress |
-| 1 | C and Assembly Programming, machine-code part | `module1_machine_code.c` | 13 items |
-| 1 | C and Assembly Programming, assembly | `module1_assembly.asm` | 15 items, not yet run |
-| 2 | I/O Systems | | not started |
-| 3 | Logic Design | | not started |
-| 4 | Processor Design | | not started |
-| 5 | Memory Hierarchy | | not started |
-| 6 | Parallel Processors and Programs | | not started |
+| Module | File | Covers |
+|---|---|---|
+| 1 C and Assembly Programming | `module1_c_programming.c` | Pointer and array C questions |
+| 1 | `module1_machine_code.c` | Encode and decode RISC-V machine code |
+| 1 | `module1_assembly.asm` | The same items as RISC-V assembly |
+| 2 I/O Systems | `module2_timer.c` | Timer questions: period register, prescale, software counter |
+| 2 | `module2_io.c` | C side of memory-mapped I/O: `volatile`, masks and shifts |
+| 2 | `module2_io.asm` | LEDs, switches, buttons, 7-segment display, polling loops in RISC-V |
+| 2 | `module2_theory.md` | True/false and explain questions |
+| 3 Logic Design | `module3_combinational.c` | Truth tables, Boolean expressions, perfect induction, mux and decoder circuits |
+| 3 | `module3_sequential.c` | Clock-tick tables, flip-flops, SR latch, counters |
+| 3 | `module3_register_file.c` | Register file size, address and data widths, circuit signals |
+| 3 | `module3_arithmetic.c` | Adder with carry, two's complement, adder/subtractor |
+| 3 | `module3_theory.md` | Explain, true/false and draw-a-circuit questions |
+| 4 Processor Design | `module4_datapath.c` | Signals A to E on the single-cycle datapath |
+| 4 | `module4_alu.c` | ALU output for a function code |
+| 4 | `module4_hazards.c` | Data and control hazards on the 5-stage pipeline |
+| 4 | `module4_theory.md` | True/false and explain questions |
+| 5 Memory Hierarchy | `module5_cache_fields.c` | Tag, set and offset bits, valid bits, capacity, associativity |
+| 5 | `module5_cache_sim.c` | Hit and miss rates through a small cache simulator |
+| 5 | `module5_theory.md` | True/false and explain questions |
+| 6 Parallel Processors and Programs | `module6_amdahl.c` | Amdahl's law in all variants |
+| 6 | `module6_misc.c` | CPI on a multiple-issue processor, operations per AVX instruction |
+| 6 | `module6_theory.md` | True/false statements by sitting and by topic |
+
+## How the files work
+
+Every exam item is its own function. Items are numbered by exam sitting in date order
+(1 = 2016-06-09 ... 13 = 2020-06-05) with the sub-question letter after it, for example
+`item9a`. Questions that exist only as a screenshot are named `extra_...`.
+
+Each C item computes its answer and prints it beside the exam's answer ("key") with `OK`
+or `WRONG`. Run any C file like this (replace the name):
+
+```
+gcc module5_cache_sim.c -o run && ./run
+```
+
+`main()` calls every item. Comment out calls to run fewer. (`module1_c_programming.c` is
+the exception: it runs one item at a time.)
+
+The `.asm` files need RARS, a RISC-V simulator. They have not been run in RARS yet.
+
+Things to know:
+
+- The 2016 to 2018 exams were MIPS. Their assembly is redone in RISC-V in modules 1 and 2;
+  those RISC-V versions are this repo's own, not the examiner's. Module 4 keeps those
+  items in MIPS so they can be checked against the official key.
+- Some screenshot-only questions have no official solution. Their output says "no key".
+- Two official solutions look wrong and are flagged in the files: the 2020-03-11 I/O
+  program (module 2, item 12b) and signal E of the 2019-01-12 datapath question
+  (module 4, item 8a).
 
 ## Module 1
 
